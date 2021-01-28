@@ -1,0 +1,105 @@
+<h1>Choose your attachments</h1>
+
+<details>
+    <summary>Muzzle</summary>
+    <% attachment.forEach(equip => { %>
+        <form action="/faves" method="GET"></form>
+        <% if (equip.type.includes('Muzzle')) { %>
+            <a href="/class/<%= equip.name %>"><li><%= equip.name %> <%= equip.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Optic</summary>
+    <% attachment.forEach(equip => { %>
+        <form action="/faves" method="GET"></form>
+        <% if (equip.type.includes('Optic')) { %>
+            <a href="/class/<%= equip.name %>"><li><%= equip.name %> <%= equip.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Barrel</summary>
+    <% attachment.forEach(equip => { %>
+        <form action="/faves" method="GET"></form>
+        <% if (equip.type.includes('Barrel')) { %>
+            <a href="/class/<%= equip.name %>"><li><%= equip.name %> <%= equip.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Laser</summary>
+    <% attachment.forEach(equip => { %>
+        <form action="/faves" method="GET"></form>
+        <% if (equip.type.includes('Laser')) { %>
+            <a href="/class/<%= equip.name %>"><li><%= equip.name %> <%= equip.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Stock</summary>
+    <% attachment.forEach(equip => { %>
+        <form action="/faves" method="GET"></form>
+        <% if (equip.type.includes('Stock')) { %>
+            <a href="/class/<%= equip.name %>"><li><%= equip.name %> <%= equip.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Grip</summary>
+    <% attachment.forEach(equip => { %>
+        <form action="/faves" method="GET"></form>
+        <% if (equip.type.includes('Grip')) { %>
+            <a href="/class/<%= equip.name %>"><li><%= equip.name %> <%= equip.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Underbarrel</summary>
+    <% attachment.forEach(equip => { %>
+        <% if (equip.type.includes('Underbarrel')) { %>
+            <a href="/class/<%= equip.name %>"><li><%= equip.name %> <%= equip.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Ammunition</summary>
+    <% attachment.forEach(equip => { %>
+        <form action="/faves" method="GET"></form>
+        <% if (equip.type.includes('Ammunition')) { %>
+            <a href="/class/<%= equip.name %>"><li><%= equip.name %> <%= equip.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Perk</summary>
+    <% attachment.forEach(equip => { %>
+        <form action="/faves" method="GET"></form>
+        <% if (equip.type.includes('Perk')) { %>
+            <a href="/class/<%= equip.name %>"><li><%= equip.name %> <%= equip.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<form action="/faves" method="GET">
+    <input type="text" name="faveName" placeholder="Name this class">
+    <input type="submit" value="Save">
+</form>
+

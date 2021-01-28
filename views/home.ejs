@@ -1,1 +1,71 @@
-<h1>Home</h1>
+<h1>Choose your weapon</h1>
+<details>
+    <summary>Assault Rifle</summary>
+    <% weapons.forEach(pew => { %>
+        <% if (pew.type.includes('Assault Rifle')) { %>
+            <a href="/class/<%= pew.name %>"><li><%= pew.name %> <%= pew.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Submachine Gun</summary>
+    <% weapons.forEach(pew => { %>
+        <% if (pew.type.includes('Submachine Gun')) { %>
+            <a href="/class/<%= pew.name %>"><li><%= pew.name %> <%= pew.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Light Machine Gun</summary>
+    <% weapons.forEach(pew => { %>
+        <% if (pew.type.includes('Light Machine Gun')) { %>
+            <a href="/class/<%= pew.name %>"><li><%= pew.name %> <%= pew.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Marksman Rifle</summary>
+    <% weapons.forEach(pew => { %>
+        <% if (pew.type.includes('Marksman Rifle')) { %>
+            <a href="/class/<%= pew.name %>"><li><%= pew.name %> <%= pew.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Sniper Rifle</summary>
+    <% weapons.forEach(pew => { %>
+        <% if (pew.type.includes('Sniper Rifle')) { %>
+            <a href="/class/<%= pew.name %>"><li><%= pew.name %> <%= pew.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+<details>
+    <summary>Shotgun</summary>
+    <% weapons.forEach(pew => { %>
+        <% if (pew.type.includes('Shotgun')) { %>
+            <a href="/class/<%= pew.name %>"><li><%= pew.name %> <%= pew.type %></li></a>
+        <% } %>
+    <% }) %>
+
+</details>
+
+
+
+
+
+<!-- </p>
+<ul><% weapons.forEach(function(pew){%>
+  <a href="/class/<%= pew.name %>"><li><%= pew.name %> <%= pew.type %></li></a>
+  <% }) %>
+</ul>
+</p> -->

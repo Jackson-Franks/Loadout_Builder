@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer')
+const db = require('../models')
 
 async function scrapeOden(url) {
     const browser = await puppeteer.launch()
@@ -39,8 +40,88 @@ async function scrapeOden(url) {
     const attachment8 = await underbarrel.getProperty('textContent')
     const oden_underbarrel = await attachment8.jsonValue()
 
-    console.log(oden_muzzle.split("\n"), oden_barrel.split("\n"), oden_laser.split("\n"), oden_optic.split("\n"), oden_stock.split("\n"), oden_grip.split("\n"), oden_ammo.split("\n"), oden_underbarrel.split("\n"))
-    process.exit()
+    // console.log(oden_muzzle.split("\n"), oden_barrel.split("\n"), oden_laser.split("\n"), oden_optic.split("\n"), oden_stock.split("\n"), oden_grip.split("\n"), oden_ammo.split("\n"), oden_underbarrel.split("\n"))
+    // process.exit()
+
+    oden_muzzle.split("\n").forEach(muzzle => {
+        db.attachments.findOrCreate({
+            where: {name: muzzle, type: "Muzzle"}
+        }).then(([muzzle, wasCreated]) => {
+            console.log(muzzle)
+            
+        })
+        
+    })
+
+    oden_barrel.split("\n").forEach(barrel => {
+        db.attachments.findOrCreate({
+            where: {name: barrel, type: "Barrel"}
+        }).then(([barrel, wasCreated]) => {
+            console.log(barrel)
+            
+        })
+        
+    })
+
+    oden_laser.split("\n").forEach(laser => {
+        db.attachments.findOrCreate({
+            where: {name: laser, type: "Laser"}
+        }).then(([laser, wasCreated]) => {
+            console.log(laser)
+            
+        })
+        
+    })
+
+    oden_optic.split("\n").forEach(optic => {
+        db.attachments.findOrCreate({
+            where: {name: optic, type: "Optic"}
+        }).then(([optic, wasCreated]) => {
+            console.log(optic)
+            
+        })
+        
+    })
+
+    oden_stock.split("\n").forEach(stock => {
+        db.attachments.findOrCreate({
+            where: {name: stock, type: "Stock"}
+        }).then(([stock, wasCreated]) => {
+            console.log(stock)
+            
+        })
+        
+    })
+
+    oden_grip.split("\n").forEach(grip => {
+        db.attachments.findOrCreate({
+            where: {name: grip, type: "Grip"}
+        }).then(([grip, wasCreated]) => {
+            console.log(grip)
+            
+        })
+        
+    })
+
+    oden_ammo.split("\n").forEach(ammo => {
+        db.attachments.findOrCreate({
+            where: {name: ammo, type: "Ammunition"}
+        }).then(([ammo, wasCreated]) => {
+            console.log(ammo)
+            
+        })
+        
+    })
+
+    oden_underbarrel.split("\n").forEach(underbarrel => {
+        db.attachments.findOrCreate({
+            where: {name: underbarrel, type: "Underbarrel"}
+        }).then(([underbarrel, wasCreated]) => {
+            console.log(underbarrel)
+            
+        })
+        
+    })
 
 }
 

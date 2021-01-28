@@ -41,11 +41,22 @@ app.use('/auth', require('./controllers/auth.js'))
 
 
 app.get('/', (req, res) => {
-    res.render('home')
+    db.guns.findAll({})
+    .then((weapons) => {
+        res.render('home', {weapons: weapons})
+
+    })
 })
 
 app.get('/profile', isLogIn, (req, res) => {
     res.render('profile')
+})
+
+app.get('/class/:id', (req, res) => {
+    db.attachments.findAll()
+    .then(attachment => {
+        res.render('class.ejs', {attachment: attachment})
+    })
 })
 
 app.get('*', (req, res) => {

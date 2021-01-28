@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer')
+const db = require('../models')
 
 async function scrapeGrau(url) {
     const browser = await puppeteer.launch()
@@ -39,8 +40,88 @@ async function scrapeGrau(url) {
     const attachment8 = await underbarrel.getProperty('textContent')
     const grau_underbarrel = await attachment8.jsonValue()
 
-    console.log(grau_muzzle.split("\n"), grau_barrel.split("\n"), grau_laser.split("\n"), grau_optic.split("\n"), grau_stock.split("\n"), grau_grip.split("\n"), grau_ammo.split("\n"), grau_underbarrel.split("\n"))
-    process.exit()
+    // console.log(grau_muzzle.split("\n"), grau_barrel.split("\n"), grau_laser.split("\n"), grau_optic.split("\n"), grau_stock.split("\n"), grau_grip.split("\n"), grau_ammo.split("\n"), grau_underbarrel.split("\n"))
+    // process.exit()
+
+    grau_muzzle.split("\n").forEach(muzzle => {
+        db.attachments.findOrCreate({
+            where: {name: muzzle, type: "Muzzle"}
+        }).then(([muzzle, wasCreated]) => {
+            console.log(muzzle)
+            
+        })
+        
+    })
+
+    grau_barrel.split("\n").forEach(barrel => {
+        db.attachments.findOrCreate({
+            where: {name: barrel, type: "Barrel"}
+        }).then(([barrel, wasCreated]) => {
+            console.log(barrel)
+            
+        })
+        
+    })
+
+    grau_laser.split("\n").forEach(laser => {
+        db.attachments.findOrCreate({
+            where: {name: laser, type: "Laser"}
+        }).then(([laser, wasCreated]) => {
+            console.log(laser)
+            
+        })
+        
+    })
+
+    grau_optic.split("\n").forEach(optic => {
+        db.attachments.findOrCreate({
+            where: {name: optic, type: "Optic"}
+        }).then(([optic, wasCreated]) => {
+            console.log(optic)
+            
+        })
+        
+    })
+
+    grau_stock.split("\n").forEach(stock => {
+        db.attachments.findOrCreate({
+            where: {name: stock, type: "Stock"}
+        }).then(([stock, wasCreated]) => {
+            console.log(stock)
+            
+        })
+        
+    })
+
+    grau_grip.split("\n").forEach(grip => {
+        db.attachments.findOrCreate({
+            where: {name: grip, type: "Grip"}
+        }).then(([grip, wasCreated]) => {
+            console.log(grip)
+            
+        })
+        
+    })
+
+    grau_ammo.split("\n").forEach(ammo => {
+        db.attachments.findOrCreate({
+            where: {name: ammo, type: "Ammunition"}
+        }).then(([ammo, wasCreated]) => {
+            console.log(ammo)
+            
+        })
+        
+    })
+
+    grau_underbarrel.split("\n").forEach(underbarrel => {
+        db.attachments.findOrCreate({
+            where: {name: underbarrel, type: "Underbarrel"}
+        }).then(([underbarrel, wasCreated]) => {
+            console.log(underbarrel)
+            
+        })
+        
+    })
 
 }
 
