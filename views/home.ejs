@@ -1,6 +1,15 @@
-<h1>Choose your weapon</h1>
-<details>
-    <summary>Assault Rifle</summary>
+<div
+class="p-5 text-center bg-image"
+style="
+background-image: url('/images/header.jpg');
+height: 100%;
+vertical-align: middle;">
+<h1 style="text-align: center;
+color: greenyellow;">Choose your weapon</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+<details style="margin-right: auto;">
+    <summary >Assault Rifle</summary>
     <% weapons.forEach(pew => { %>
         <% if (pew.type.includes('Assault Rifle')) { %>
             <a href="/class/<%= pew.name %>"><li><%= pew.name %> <%= pew.type %></li></a>
@@ -9,7 +18,7 @@
 
 </details>
 
-<details>
+<details style="margin-right: auto;">
     <summary>Submachine Gun</summary>
     <% weapons.forEach(pew => { %>
         <% if (pew.type.includes('Submachine Gun')) { %>
@@ -19,7 +28,7 @@
 
 </details>
 
-<details>
+<details style="margin-right: auto;">
     <summary>Light Machine Gun</summary>
     <% weapons.forEach(pew => { %>
         <% if (pew.type.includes('Light Machine Gun')) { %>
@@ -29,7 +38,7 @@
 
 </details>
 
-<details>
+<details style="margin-right: auto;">
     <summary>Marksman Rifle</summary>
     <% weapons.forEach(pew => { %>
         <% if (pew.type.includes('Marksman Rifle')) { %>
@@ -39,7 +48,7 @@
 
 </details>
 
-<details>
+<details style="margin-right: auto;">
     <summary>Sniper Rifle</summary>
     <% weapons.forEach(pew => { %>
         <% if (pew.type.includes('Sniper Rifle')) { %>
@@ -49,7 +58,7 @@
 
 </details>
 
-<details>
+<details style="margin-right: auto;">
     <summary>Shotgun</summary>
     <% weapons.forEach(pew => { %>
         <% if (pew.type.includes('Shotgun')) { %>
@@ -58,9 +67,9 @@
     <% }) %>
 
 </details>
+</nav>
 
-
-
+</div>
 
 
 <!-- </p>

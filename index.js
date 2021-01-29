@@ -7,6 +7,7 @@ const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
 const isLogIn = require('./middleware/isLogIn.js')
 const methodOverride = require('method-override')
+const path = require('path')
 
 const app = express()
 
@@ -30,6 +31,7 @@ app.use(passport.session())
 
 // flash middleware
 app.use(flash())
+app.use(express.static(path.join(__dirname, 'public')))
 
 // CUSTOM MIDDLEWARE
 app.use((req, res, next) =>{
@@ -93,6 +95,21 @@ app.get('/results/:id', isLogIn, (req, res) => {
       })
     
   })
+
+  app.put('/faves/:idx', (req, res) => {
+      db.attachments = req.body.attachments
+      res.redirect('faves')
+  })
+
+  app.get('/faves/edit/:idx', isLogIn, (req, res) => {
+    db.loadout.findOne({ where: {name: req.params.id}})
+    .then(loadout => {
+        loadout.getAttachments()
+        .then(attachments => {
+      res.render('edit', {loadout, attachments})
+  })
+})
+})
 
   app.post('/results/:id', isLogIn, (req, res) => {
     db.loadouts_attachments.findOrCreate({

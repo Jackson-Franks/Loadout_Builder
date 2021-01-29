@@ -1,12 +1,18 @@
 <h2>
+    <form action="/faves/<%=loadout.name%>/?_method=PUT" method="POST">
    <%=loadout.name %>
    <%= loadout.type %>
+   
 </h2>
 
 <p>Attachments</p>
 
 <ul>
+    
     <%attachments.forEach(attachment => { %>
         <li><%= attachment.name %></li>
    <% })%>
+   <input type="submit" value="Edit">
+</form>
 </ul>
+
