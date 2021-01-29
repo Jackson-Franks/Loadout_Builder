@@ -1,0 +1,12 @@
+<h2>
+   <%=loadout.name %>
+   <%= loadout.type %>
+</h2>
+
+<p>Attachments</p>
+
+<ul>
+    <%attachments.forEach(attachment => { %>
+        <li><%= attachment.name %></li>
+   <% })%>
+</ul>

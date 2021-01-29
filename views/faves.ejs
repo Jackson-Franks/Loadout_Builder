@@ -1,0 +1,16 @@
+<h1>Favorite classes of the people</h1>
+
+<ul>
+    
+    <% fave.forEach(function(fav){ %>
+        <a href="/results/<%= fav.name%>"><li><%= fav.name %>, <%= fav.type %></li></a>
+        <form action="/faves/<%= fav.name%>/?_method=DELETE" method="POST">
+            <input hidden type="text" name="name" value="<%= fav.name%>">
+            <input hidden type="text" name="type" value="<%= fav.type%>">
+            
+            <input type="submit" value="Delete">
+        </form>
+        
+        
+  <%  }) %>
+</ul>

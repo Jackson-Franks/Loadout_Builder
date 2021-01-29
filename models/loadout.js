@@ -3,22 +3,24 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class attachments extends Model {
+  class loadout extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.attachments.belongsToMany(models.loadout, {through: 'loadouts_attachments'})
+      models.loadout.belongsTo(models.user)
+      models.loadout.belongsToMany(models.attachments, {through: 'loadouts_attachments'})
     }
   };
-  attachments.init({
+  loadout.init({
     name: DataTypes.STRING,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'attachments',
+    modelName: 'loadout',
   });
-  return attachments;
+  return loadout;
 };

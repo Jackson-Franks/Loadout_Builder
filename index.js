@@ -6,6 +6,7 @@ const session = require('express-session')
 const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
 const isLogIn = require('./middleware/isLogIn.js')
+const methodOverride = require('method-override')
 
 const app = express()
 
@@ -13,6 +14,8 @@ app.set('view engine', 'ejs')
 // body parser middleware that allows us to use req.body
 app.use(express.urlencoded({extended: false}))
 app.use(ejsLayouts)
+
+app.use(methodOverride('_method'))
 
 // session middleware
 app.use(session({
@@ -52,10 +55,75 @@ app.get('/profile', isLogIn, (req, res) => {
     res.render('profile')
 })
 
+app.get('/faves', (req, res) => {
+    db.loadout.findAll()
+    .then(fave => {
+      res.render('faves.ejs', {fave})
+    })
+  })
+
+app.get('/results/:id', isLogIn, (req, res) => {
+   db.loadout.findOne({ where: {name: req.params.id}})
+    .then(loadout => {
+        loadout.getAttachments()
+        .then(attachments => {
+            res.render('results', {loadout, attachments})
+        })
+    })
+})
+
+  app.post('/faves', isLogIn, (req, res) => {
+      console.log('nice', req.body.faveName, req.body.gun)
+      db.loadout.findOrCreate({
+          where: {
+          name: req.body.faveName,
+          type: req.body.gun,
+          userId: req.user.id
+          }
+      }).then(([loadout, wasCreated]) => {
+          req.body.attachments.forEach(newAttachment => {
+              db.attachments.findOne({
+                  where: {name: newAttachment}
+              }).then(attachment => {
+                 console.log(attachment)
+                 loadout.addAttachments(attachment)
+                })
+            })
+            res.redirect('/faves')
+      })
+    
+  })
+
+  app.post('/results/:id', isLogIn, (req, res) => {
+    db.loadouts_attachments.findOrCreate({
+        where: {
+            loadoutId: req.body.gun,
+            attachmentId: req.body.attachments
+        }
+    }).then(faveLoadout => {
+        res.redirect('results.ejs')
+    })
+  })
+
+  app.delete('/faves/:name', isLogIn, (req,res) => {
+      db.loadout.destroy({
+          where: {
+            name: req.body.name,
+            type: req.body.type,
+            userId: req.user.id
+          }
+      }).then(classDeleted => {
+          res.redirect('/faves')
+          msg: 'Class deleted'
+      })
+  })
+
+
+
 app.get('/class/:id', (req, res) => {
     db.attachments.findAll()
     .then(attachment => {
-        res.render('class.ejs', {attachment: attachment})
+        res.render('class.ejs', {attachment: attachment, gun:req.params.id})
     })
 })
 
